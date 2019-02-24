@@ -7,8 +7,8 @@ python3 examples/sensor_clock_EN.py
 
 sensor_clock works with BME280 module.
 Adafruit BME280 requires:
--  Adafruit BM280
--  Adafruit GPIO
+-  Adafruit BM280 https://github.com/Naohiro2g/Adafruit_Python_BME280
+-  Adafruit GPIO https://github.com/Naohiro2g/Adafruit_Python_GPIO
 
 I2C address should be changed from 0x77 to 0x76
 `i2cdetect -y 1`
