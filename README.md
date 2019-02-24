@@ -1,7 +1,29 @@
+
 ```
 sudo python3 setup.py install
 python3 examples/clock_EN.py
+python3 examples/sensor_clock_EN.py
 ```
+
+sensor_clock works with BME280 module.
+Adafruit BME280 requires:
+-  Adafruit BM280
+-  Adafruit GPIO
+
+I2C address should be changed from 0x77 to 0x76
+`i2cdetect -y 1`
+
+```
+BME280_I2CADDR = 0x76
+```
+
+```
+class BME280(object):
+    def __init__(self, t_mode=BME280_OSAMPLE_1, p_mode=BME280_OSAMPLE_1, h_mode=BME280_OSAMPLE_1,
+                 standby=BME280_STANDBY_250, filter=BME280_FILTER_off, address=BME280_I2CADDR, i2c=None,
+                 **kwargs):
+```
+
 
 Modified from Adafruit for ST7735
 
@@ -32,6 +54,8 @@ Yellow |10    |GND   |Brown
 `---`  |9     |25    |Green
 Orange |11    |8     |Purple
  
+
+
 
 
 
