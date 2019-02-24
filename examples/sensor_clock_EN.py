@@ -14,14 +14,25 @@ import numpy as np
 
 from Adafruit_BME280 import *
 
+BME280_I2CADDR = 0x76
+
+# get image path
+import os
+
+FILE_PATH = os.path.dirname(__file__)
+image_path_clock = os.path.join(FILE_PATH, 'raspberry_pi_clock.jpg')
+
+
 # Raspberry Pi pin configuration:
-RST = 27
-DC  = 25
-LED = 24
+RST = 25
+DC  = 24
+LED = 8
 SPI_PORT = 0
 SPI_DEVICE = 0
 SPI_MODE = 0b11
 SPI_SPEED_HZ = 40000000
+
+
 
 def expand2square(pil_img, background_color):
     width, height = pil_img.size
@@ -69,7 +80,7 @@ image1 = Image.new("RGB", (disp.width, disp.height), "BLACK")
 draw = ImageDraw.Draw(image1)
 
 # Initial screen (Demonstration for displaying images)
-image = Image.open('raspberry_pi_clock.jpg')
+image = Image.open(image_path_clock)
 image.thumbnail((240, 240), Image.ANTIALIAS)
 image = expand2square(image, (0,0,0))
 
@@ -100,7 +111,7 @@ def draw_rotated_text(image, text, position, angle, font, fill=(255,255,255)):
     image.paste(rotated, position, rotated)
 
 try:
-    sensor = BME280(t_mode=BME280_OSAMPLE_8, p_mode=BME280_OSAMPLE_8, h_mode=BME280_OSAMPLE_8)
+    sensor = BME280(address=BME280_I2CADDR, t_mode=BME280_OSAMPLE_8, p_mode=BME280_OSAMPLE_8, h_mode=BME280_OSAMPLE_8)
     degrees = sensor.read_temperature()
     pascals = sensor.read_pressure()
     hectopascals = pascals / 100
@@ -112,7 +123,7 @@ try:
     while 1:
 
         if time[6:8] == "00":
-            sensor = BME280(t_mode=BME280_OSAMPLE_8, p_mode=BME280_OSAMPLE_8, h_mode=BME280_OSAMPLE_8)
+            sensor = BME280(address=BME280_I2CADDR, t_mode=BME280_OSAMPLE_8, p_mode=BME280_OSAMPLE_8, h_mode=BME280_OSAMPLE_8)
             degrees = sensor.read_temperature()
             pascals = sensor.read_pressure()
             hectopascals = pascals / 100
@@ -161,7 +172,7 @@ finally:
     disp.clear()
     disp.display(image)
 
-    image = Image.open('raspberry_pi_clock.jpg')
+    image = Image.open(image_path_clock)
     image.thumbnail((240, 240), Image.ANTIALIAS)
     image = expand2square(image, (0,0,0))
     disp.display(image)

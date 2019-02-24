@@ -12,10 +12,23 @@ from PIL import Image, ImageDraw, ImageFont, ImageColor
 
 import numpy as np
 
+# get image path
+import os
+
+FILE_PATH = os.path.dirname(__file__)
+
+image_path_1 = os.path.join(FILE_PATH, '1.jpg')
+image_path_2 = os.path.join(FILE_PATH, '2.jpg')
+image_path_3 = os.path.join(FILE_PATH, '3.jpg')
+image_path_4 = os.path.join(FILE_PATH, '4.jpg')
+image_path_clock = os.path.join(FILE_PATH, 'raspberry_pi_clock.jpg')
+
+
+
 # Raspberry Pi pin configuration:
-RST = 27
-DC  = 25
-LED = 24
+RST = 25
+DC  = 24
+LED = 8
 SPI_PORT = 0
 SPI_DEVICE = 0
 SPI_MODE = 0b11
@@ -67,10 +80,10 @@ image1 = Image.new("RGB", (disp.width, disp.height), "BLACK")
 draw = ImageDraw.Draw(image1)
 
 # Initial screen (Demonstration for displaying images)
-image2 = Image.open('raspberry_pi_clock.jpg')
+image2 = Image.open(image_path_clock)
 image2.thumbnail((240, 240), Image.ANTIALIAS)
 image2 = expand2square(image2, (0,0,0))
-image3 = Image.open('raspberry_pi_clock.jpg')
+image3 = Image.open(image_path_clock)
 image3.thumbnail((120, 120), Image.ANTIALIAS)
 image3 = expand2square(image3, (0,0,0))
 
@@ -86,22 +99,22 @@ disp.display(image3,120,120,239,239)
 sleep(1)
 disp.display(image1)
 sleep(0.2)
-image4 = Image.open('1.jpg')
+image4 = Image.open(image_path_1)
 image4.thumbnail((240, 240), Image.ANTIALIAS)
 image4 = expand2square(image4, (0,0,0))
 disp.display(image4)
 sleep(0.5)
-image5 = Image.open('2.jpg')
+image5 = Image.open(image_path_2)
 image5.thumbnail((240, 240), Image.ANTIALIAS)
 image5 = expand2square(image5, (0,0,0))
 disp.display(image5)
 sleep(0.5)
-image6 = Image.open('3.jpg')
+image6 = Image.open(image_path_3)
 image6.thumbnail((240, 240), Image.ANTIALIAS)
 image6 = expand2square(image6, (0,0,0))
 disp.display(image6)
 sleep(0.5)
-image7 = Image.open('4.jpg')
+image7 = Image.open(image_path_4)
 image7.thumbnail((240, 240), Image.ANTIALIAS)
 image7 = expand2square(image7, (0,0,0))
 disp.display(image7)
@@ -131,7 +144,7 @@ sleep(0.5)
 
 # font setting
 font = ImageFont.load_default()
-fontJ = ImageFont.truetype('DejaVuSans.ttf', 28, encoding='unic')
+fontJ = ImageFont.truetype('DejaVuSans.ttf', 26, encoding='unic')
 
 Weekday = ("Mon","Tue","Wed","Thu","Fri","Sat","Sun")
 
@@ -191,7 +204,7 @@ finally:
     disp.clear()
     disp.display(image1)
 
-    image = Image.open('raspberry_pi_clock.jpg')
+    image = Image.open(image_path_clock)
     image.thumbnail((240, 240), Image.ANTIALIAS)
     image = expand2square(image, (0,0,0))
     disp.display(image2)
