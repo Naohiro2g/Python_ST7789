@@ -1,3 +1,8 @@
+```
+sudo python3 setup.py install
+python3 examples/clock_EN.py
+```
+
 Modified from Adafruit for ST7735
 
 ### SPI connection
