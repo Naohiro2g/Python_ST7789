@@ -48,7 +48,7 @@ class ST7789(object):
         height=ST7789_TFTHEIGHT):
 ```        
              
-### Wiring to Rpi Pins (pin compatible with SD1306 128x64 display)
+### Wiring to Rpi Pins (pin compatible with SD1306 128x64 display, for SPI connetion)
 
 Left   |BCM   |BCM   |Right
 -------|------|------|-------
