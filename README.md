@@ -6,6 +6,8 @@ python3 examples/sensor_clock_EN.py
 ```
 
 sensor_clock works with BME280 module.
+For connection to RPi, see https://github.com/Naohiro2g/bme280
+
 Adafruit BME280 requires:
 -  Adafruit BM280 https://github.com/Naohiro2g/Adafruit_Python_BME280
 -  Adafruit GPIO https://github.com/Naohiro2g/Adafruit_Python_GPIO
@@ -23,6 +25,7 @@ class BME280(object):
                  standby=BME280_STANDBY_250, filter=BME280_FILTER_off, address=BME280_I2CADDR, i2c=None,
                  **kwargs):
 ```
+
 
 
 Modified from Adafruit for ST7735
@@ -45,7 +48,7 @@ class ST7789(object):
         height=ST7789_TFTHEIGHT):
 ```        
              
-### Wiring to Rpi Pins (pin compatible with SD1306 128x64 display)
+### Wiring to Rpi Pins (pin compatible with SD1306 128x64 display, for SPI connetion)
 
 Left   |BCM   |BCM   |Right
 -------|------|------|-------
